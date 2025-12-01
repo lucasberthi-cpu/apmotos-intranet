@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>AP Motos - Procedimientos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #222 0%, #000 55%, #111 100%);
+      color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      background: rgba(15, 15, 15, 0.96);
+      border-radius: 18px;
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.75);
+      padding: 28px 24px 32px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 18px;
+      margin-bottom: 24px;
+    }
+
+    header img {
+      height: 64px;
+      width: auto;
+      display: block;
+    }
+
+    .title-block {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .title-block h1 {
+      font-size: 1.7rem;
+      letter-spacing: 0.03em;
+      font-weight: 600;
+    }
+
+    .title-block p {
+      margin-top: 4px;
+      font-size: 0.9rem;
+      color: #c5c5c5;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background: #b00012;
+      padding: 4px 10px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-top: 8px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .tile {
+      display: block;
+      background: linear-gradient(145deg, #181818, #101010);
+      border-radius: 14px;
+      padding: 16px 18px;
+      text-decoration: none;
+      color: #f5f5f5;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.65);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, border-color 0.16s ease-out;
+    }
+
+    .tile::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent);
+      opacity: 0;
+      transition: opacity 0.18s ease-out;
+      pointer-events: none;
+    }
+
+    .tile:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.85);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .tile:hover::before {
+      opacity: 1;
+    }
+
+    .tile h2 {
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .tile p {
+      font-size: 0.88rem;
+      color: #d0d0d0;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+      border-radius: 999px;
+      padding: 2px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      opacity: 0.9;
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      font-size: 0.8rem;
+      color: #b5b5b5;
+      opacity: 0.9;
+    }
+
+    .footer-note span {
+      color: #ff3232;
+      font-weight: 600;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        text-align: center;
+        justify-content: center;
+      }
+
+      header img {
+        margin: 0 auto;
+      }
+
+      .title-block h1 {
+        font-size: 1.35rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <!-- CAMBIÁ EL NOMBRE DEL ARCHIVO SI ES NECESARIO -->
+      <img src="https://i.imgur.com/XzraTE5.png" alt="AP Motos" style="height:64px; width:auto; display:block;">
+      <div class="title-block">
+        <h1>Panel de Procedimientos </h1>
+        <p>Accesos rápidos a todos los documentos de trabajo para ventas de motos y repuestos.</p>
+      
+      </div>
+    </header>
+
+    <main>
+      <div class="grid">
+        <!-- PROCEDIMIENTO PARA VENTAS (MOTOS) -->
+        <a class="tile"
+           href="AQUI_EL_LINK_DE_PROCEDIMIENTO_VENTA_MOTOS"
+           target="_blank" rel="noopener">
+          <span class="tag">Ventas · Motos</span>
+          <h2>Procedimiento venta motos</h2>
+          <p>Checklist paso a paso desde la seña hasta la entrega y post entrega de la unidad.</p>
+        </a>
+
+        <!-- RESPUESTAS AUTOMÁTICAS -->
+        <a class="tile"
+           href="AQUI_EL_LINK_DE_RESPUESTAS_AUTOMATICAS"
+           target="_blank" rel="noopener">
+          <span class="tag">Comunicación</span>
+          <h2>Respuestas automáticas</h2>
+          <p>Guión y plantillas listas para copiar y pegar en WhatsApp, mail y redes.</p>
+        </a>
+
+        <!-- COTIZADOR QJ MOTOR -->
+        <a class="tile"
+           href="AQUI_EL_LINK_DE_COTIZADOR_QJ_MOTOR"
+           target="_blank" rel="noopener">
+          <span class="tag">Financiación</span>
+          <h2>Cotizador QJ Motor</h2>
+          <p>Archivo Excel con precios, cuotas y simulaciones para toda la línea QJ Motor.</p>
+        </a>
+
+        <!-- COTIZADOR AP -->
+        <a class="tile"
+           href="https://onedrive.live.com/personal/61a3d7417ce8dfa9/_layouts/15/Doc.aspx?sourcedoc=%7B66a57dc8-baaa-4354-9b3a-da69aa258da1%7D&action=default&redeem=aHR0cHM6Ly8xZHJ2Lm1zL3gvYy82MWEzZDc0MTdjZThkZmE5L0VjaDlwV2FxdWxSRG16cmFhYW9samFFQlZBT0Jub1Fqam11QTlSVmRLQmxNM3c_ZT1teEVBZUg&slrid=3d96dea1-1012-9000-d341-5693e6303a0e&originalPath=aHR0cHM6Ly8xZHJ2Lm1zL3gvYy82MWEzZDc0MTdjZThkZmE5L0VjaDlwV2FxdWxSRG16cmFhYW9samFFQlZBT0Jub1Fqam11QTlSVmRLQmxNM3c_cnRpbWU9WWdneHkyd3cza2c&CID=a443519c-a224-4b6a-9a28-7cf064cc8c6a&_SRM=0:G:46"
+           target="_blank" rel="noopener">
+          <span class="tag">Financiación</span>
+          <h2>Cotizador AP</h2>
+          <p>Archivo Excel con precios, cuotas y simulaciones para toda la línea AP.</p>
+        </a>
+
+        <!-- CALCULADORA DE CUOTAS -->
+        <a class="tile"
+           href="AQUI_EL_LINK_DE_CALCULADORA_DE_CUOTAS"
+           target="_blank" rel="noopener">
+          <span class="tag">Herramientas</span>
+          <h2>Calculadora de cuotas</h2>
+          <p>Simulador rápido para armar propuestas de financiación frente al cliente.</p>
+        </a>
+
+        <!-- INSTRUCTIVO FLOW -->
+        <a class="tile"
+           href="https://drive.google.com/file/d/14PbUyG2SxQhFFsUJnwCWfAw9mOeDON1x/view?usp=sharing"
+           target="_blank" rel="noopener">
+          <span class="tag">Sistema</span>
+          <h2>Instructivo Flow</h2>
+          <p>Manual de uso del sistema Flow: carga de datos, facturacion y stocks.</p>
+        </a>
+
+        <!-- MOTOS (LISTADO / STOCK / INFO) -->
+        <a class="tile"
+           href="https://apmotos.com.ar/motos.php"
+           target="_blank" rel="noopener">
+          <span class="tag">Producto</span>
+          <h2>Motos</h2>
+          <p>Listado actualizado de modelos, fichas técnicas, precios y material de apoyo.</p>
+        </a>
+
+<!-- MOTOS (LISTADO / STOCK / INFO) -->
+        <a class="tile"
+           href="https://apmotos.com.ar/motos.php"
+           target="_blank" rel="noopener">
+          <span class="tag">Producto</span>
+          <h2>TURNOS DE SERVICE</h2>
+          <p>Agenda de turnos para servicio yreparaciones.</p>
+        </a>
+
+      </div>
+
+      <p class="footer-note">
+               <span>    </span>       </p>
+    </main>
+  </div>
+</body>
+</html>
