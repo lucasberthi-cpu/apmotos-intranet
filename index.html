@@ -13,7 +13,7 @@
     }
 
     body {
-      background: radial-gradient(circle at top, #222 0%, #000 55%, #111 100%);
+      background: radial-gradient(circle at top, #2a2a2a 0%, #000 55%, #050505 100%);
       color: #f5f5f5;
       min-height: 100vh;
       display: flex;
@@ -24,28 +24,54 @@
 
     .container {
       width: 100%;
-      max-width: 1100px;
-      background: rgba(15, 15, 15, 0.96);
-      border-radius: 18px;
-      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.75);
-      padding: 28px 24px 32px;
+      max-width: 1150px;
+      background: radial-gradient(circle at top left, rgba(176, 0, 18, 0.2), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.08), transparent 60%),
+                  rgba(10, 10, 10, 0.96);
+      border-radius: 20px;
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.85);
+      padding: 26px 26px 32px;
       border: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 40%, rgba(176, 0, 18, 0.18));
+      mix-blend-mode: soft-light;
+      opacity: 0.35;
+      pointer-events: none;
     }
 
     header {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 16px;
+      justify-content: space-between;
+      gap: 18px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding-bottom: 18px;
       margin-bottom: 24px;
     }
 
+    .header-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      min-width: 260px;
+    }
+
     header img {
-      height: 64px;
+      height: 68px;
       width: auto;
       display: block;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
     }
 
     .title-block {
@@ -54,26 +80,79 @@
     }
 
     .title-block h1 {
-      font-size: 1.7rem;
-      letter-spacing: 0.03em;
-      font-weight: 600;
+      font-size: 1.9rem;
+      letter-spacing: 0.06em;
+      font-weight: 650;
+      text-transform: uppercase;
+      margin-bottom: 2px;
     }
 
     .title-block p {
       margin-top: 4px;
       font-size: 0.9rem;
       color: #c5c5c5;
+      max-width: 420px;
     }
 
     .badge {
       font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      background: #b00012;
-      padding: 4px 10px;
+      letter-spacing: 0.16em;
+      background: linear-gradient(135deg, #ff3232, #b00012);
+      padding: 4px 12px;
       border-radius: 999px;
-      display: inline-block;
-      margin-top: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+      white-space: nowrap;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .meta {
+      text-align: right;
+      font-size: 0.78rem;
+      color: #a8a8a8;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 170px;
+    }
+
+    .meta span {
+      opacity: 0.9;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .section-header h2 {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #f0f0f0;
+      opacity: 0.9;
+    }
+
+    .section-header p {
+      font-size: 0.8rem;
+      color: #a8a8a8;
     }
 
     .grid {
@@ -84,32 +163,49 @@
 
     .tile {
       display: block;
-      background: linear-gradient(145deg, #181818, #101010);
-      border-radius: 14px;
-      padding: 16px 18px;
+      background: radial-gradient(circle at top left, #222 0%, #101010 55%, #050505 100%);
+      border-radius: 16px;
+      padding: 16px 18px 15px;
       text-decoration: none;
       color: #f5f5f5;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.75);
       position: relative;
       overflow: hidden;
-      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out, border-color 0.16s ease-out;
+      transition:
+        transform 0.16s ease-out,
+        box-shadow 0.16s ease-out,
+        border-color 0.16s ease-out,
+        background 0.16s ease-out;
     }
 
     .tile::before {
       content: "";
       position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent);
+      inset: -20%;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.1), transparent 55%);
       opacity: 0;
       transition: opacity 0.18s ease-out;
       pointer-events: none;
+      mix-blend-mode: soft-light;
+    }
+
+    .tile::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 40%;
+      background: linear-gradient(90deg, #ff3232, transparent);
+      opacity: 0.75;
     }
 
     .tile:hover {
       transform: translateY(-4px);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.85);
-      border-color: rgba(255, 255, 255, 0.16);
+      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.9);
+      border-color: rgba(255, 255, 255, 0.2);
+      background: radial-gradient(circle at top left, #292929 0%, #101010 55%, #050505 100%);
     }
 
     .tile:hover::before {
@@ -118,33 +214,49 @@
 
     .tile h2 {
       font-size: 1.02rem;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
     }
 
     .tile p {
       font-size: 0.88rem;
       color: #d0d0d0;
+      line-height: 1.4;
+      margin-top: 4px;
     }
 
     .tag {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       margin-bottom: 6px;
       border-radius: 999px;
-      padding: 2px 8px;
+      padding: 3px 9px;
       border: 1px solid rgba(255, 255, 255, 0.16);
       opacity: 0.9;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ff3232;
     }
 
     .footer-note {
       margin-top: 22px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #b5b5b5;
       opacity: 0.9;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .footer-note span {
@@ -152,18 +264,55 @@
       font-weight: 600;
     }
 
-    @media (max-width: 640px) {
+    a.tile:focus-visible {
+      outline: 2px solid #ff3232;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 16px 22px;
+        border-radius: 16px;
+      }
+
       header {
         text-align: center;
+      }
+
+      .header-left {
         justify-content: center;
       }
 
-      header img {
-        margin: 0 auto;
+      .meta {
+        text-align: center;
+        align-items: center;
       }
 
       .title-block h1 {
-        font-size: 1.35rem;
+        font-size: 1.55rem;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .section-header h2 {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 12px;
+      }
+
+      header img {
+        height: 60px;
+      }
+
+      .title-block h1 {
+        font-size: 1.4rem;
       }
     }
   </style>
@@ -171,22 +320,35 @@
 <body>
   <div class="container">
     <header>
-      <!-- CAMBIÁ EL NOMBRE DEL ARCHIVO SI ES NECESARIO -->
-      <img src="https://i.imgur.com/XzraTE5.png" alt="AP Motos" style="height:64px; width:auto; display:block;">
-      <div class="title-block">
-        <h1>Panel de Procedimientos </h1>
-        <p>Accesos rápidos a todos los documentos de trabajo para ventas de motos y repuestos.</p>
-      
+      <div class="header-left">
+        <!-- LOGO -->
+        <img src="https://i.imgur.com/XzraTE5.png" alt="AP Motos">
+        <div class="title-block">
+          <h1>Panel de Procedimientos</h1>
+          <p>Accesos rápidos a todos los documentos de trabajo para ventas de motos y repuestos.</p>
+        </div>
+      </div>
+      <div class="meta">
+        <div class="badge">
+          <span class="badge-dot"></span>
+          PANEL INTERNO
+        </div>
+        <span>AP Motos · Ventas &amp; Administración</span>
       </div>
     </header>
 
     <main>
+      <div class="section-header">
+        <h2>ACCESOS RÁPIDOS</h2>
+        <p>Procedimientos, herramientas y documentación clave para el día a día.</p>
+      </div>
+
       <div class="grid">
         <!-- PROCEDIMIENTO PARA VENTAS (MOTOS) -->
         <a class="tile"
            href="https://drive.google.com/file/d/1NIxnrtEZf3G8j5ifHHV9uLN0h1XXyi21/view"
            target="_blank" rel="noopener">
-          <span class="tag">Ventas · Motos</span>
+          <span class="tag"><span class="tag-dot"></span>Ventas · Motos</span>
           <h2>Procedimiento venta motos</h2>
           <p>Checklist paso a paso desde la seña hasta la entrega y post entrega de la unidad.</p>
         </a>
@@ -195,7 +357,7 @@
         <a class="tile"
            href="https://docs.google.com/document/d/1DRV7pPlLvsKRfpQ6FGEsdcimR3A0zOGvOEvr0oO0974/edit?usp=sharing"
            target="_blank" rel="noopener">
-          <span class="tag">Comunicación</span>
+          <span class="tag"><span class="tag-dot"></span>Comunicación</span>
           <h2>Respuestas automáticas</h2>
           <p>Guión y plantillas listas para copiar y pegar en WhatsApp, mail y redes.</p>
         </a>
@@ -204,7 +366,7 @@
         <a class="tile"
            href="https://1drv.ms/x/c/61a3d7417ce8dfa9/EYIy0WVKEfNMotHEsidDlxwBu_Gt2F6Sr4K-cdzrCWomUQ?e=j3kIVm"
            target="_blank" rel="noopener">
-          <span class="tag">Financiación</span>
+          <span class="tag"><span class="tag-dot"></span>Financiación</span>
           <h2>Cotizador QJ Motor</h2>
           <p>Archivo Excel con precios, cuotas y simulaciones para toda la línea QJ Motor.</p>
         </a>
@@ -212,8 +374,8 @@
         <!-- COTIZADOR AP -->
         <a class="tile"
            href="https://1drv.ms/x/c/61a3d7417ce8dfa9/ET2d5yKkI5dPluP9KDCUTrUBzQPCAu1ieg1O_0k0rsLB6g?e=uBh2gO"
-         target="_blank" rel="noopener">
-          <span class="tag">Financiación</span>
+           target="_blank" rel="noopener">
+          <span class="tag"><span class="tag-dot"></span>Financiación</span>
           <h2>Cotizador AP</h2>
           <p>Archivo Excel con precios, cuotas y simulaciones para toda la línea AP.</p>
         </a>
@@ -222,7 +384,7 @@
         <a class="tile"
            href="https://1drv.ms/x/c/61a3d7417ce8dfa9/EZGF7lHDP39GjCuqy3Gr_1EB-YJmkpoWT8B1ususHK6oJw?e=N713ak"
            target="_blank" rel="noopener">
-          <span class="tag">Herramientas</span>
+          <span class="tag"><span class="tag-dot"></span>Herramientas</span>
           <h2>Calculadora de cuotas</h2>
           <p>Simulador rápido para armar propuestas de financiación frente al cliente.</p>
         </a>
@@ -231,30 +393,31 @@
         <a class="tile"
            href="https://drive.google.com/file/d/1pIZx0ceQxKyz-Z2Tr8glm79AR2alz9QF/view"
            target="_blank" rel="noopener">
-          <span class="tag">Sistema</span>
+          <span class="tag"><span class="tag-dot"></span>Sistema</span>
           <h2>Instructivo Flow</h2>
-          <p>Manual de uso del sistema Flow: carga de datos, facturacion y stocks.</p>
+          <p>Manual de uso del sistema Flow: carga de datos, facturación y stock.</p>
         </a>
 
         <!-- MOTOS (LISTADO / STOCK / INFO) -->
         <a class="tile"
            href="https://apmotos.com.ar/motos.php"
            target="_blank" rel="noopener">
-          <span class="tag">Producto</span>
+          <span class="tag"><span class="tag-dot"></span>Producto</span>
           <h2>Motos</h2>
           <p>Listado actualizado de modelos, fichas técnicas, precios y material de apoyo.</p>
         </a>
-
-
-
       </div>
 
       <p class="footer-note">
-               <span>    </span>       </p>
+        <span>Recordá actualizar los documentos cuando haya cambios de precios, promociones o procesos.</span>
+        <span>Panel interno <strong>AP Motos</strong></span>
+      </p>
     </main>
   </div>
 </body>
 </html>
+
+
 
 
 
