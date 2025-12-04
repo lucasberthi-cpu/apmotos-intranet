@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>AP Motos - Check-list Taller</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #222 0%, #000 55%, #111 100%);
+      color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      background: rgba(15, 15, 15, 0.96);
+      border-radius: 18px;
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 22px 22px 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.2fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .header {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      gap: 12px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #ff4d4d, #a00000 55%, #300 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      box-shadow: 0 0 14px rgba(255, 0, 0, 0.45);
+    }
+
+    .title-block h1 {
+      font-size: 1.3rem;
+      font-weight: 650;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .title-block p {
+      font-size: 0.8rem;
+      color: #bbbbbb;
+      margin-top: 3px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid rgba(248, 113, 113, 0.7);
+      background: linear-gradient(120deg, rgba(127, 29, 29, 0.85), rgba(220, 38, 38, 0.4));
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    /* Panel principal (formulario) */
+    .main-panel {
+      border-radius: 14px;
+      padding: 14px 16px 16px;
+      background: radial-gradient(circle at top left, #181818, #050505 70%);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      box-shadow: 0 14px 24px rgba(0, 0, 0, 0.7);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .section-header h2 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e5e7eb;
+    }
+
+    .section-header span {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 12px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #9ca3af;
+    }
+
+    .required::after {
+      content: " *";
+      color: #f97373;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 9px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      padding: 8px 9px;
+      color: #f9fafb;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #f97373;
+      box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.6);
+    }
+
+    textarea {
+      min-height: 82px;
+      resize: vertical;
+    }
+
+    .checkbox-group {
+      margin-top: 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(55, 65, 81, 0.8);
+      background: radial-gradient(circle at top left, rgba(17,24,39,0.95), rgba(3,7,18,0.98));
+      padding: 10px 11px;
+      max-height: 360px;
+      overflow-y: auto;
+    }
+
+    .group-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: #d1d5db;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .group-title span {
+      font-size: 0.7rem;
+      color: #6b7280;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    .checklist-column {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px 14px;
+    }
+
+    @media (max-width: 700px) {
+      .checklist-column {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: #e5e7eb;
+      padding: 5px 6px;
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .check-item:hover {
+      border-color: rgba(248, 113, 113, 0.6);
+      background: radial-gradient(circle at top left, rgba(31,41,55,0.95), rgba(15,23,42,0.9));
+    }
+
+    .check-item input[type="checkbox"] {
+      margin-top: 3px;
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+    .check-item span {
+      display: block;
+      line-height: 1.25;
+    }
+
+    .obs-block {
+      margin-top: 12px;
+    }
+
+    .obs-block h3 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 4px;
+      color: #e5e7eb;
+    }
+
+    .obs-block p {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-bottom: 5px;
+    }
+
+    .submit-row {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    button[type="submit"] {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 22px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ef4444, #991b1b);
+      color: #f9fafb;
+      box-shadow: 0 0 18px rgba(248, 113, 113, 0.8);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    button[type="submit"]:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 25px rgba(248, 113, 113, 0.75);
+    }
+
+    .submit-note {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    .submit-note strong {
+      color: #e5e7eb;
+    }
+
+    /* Panel lateral */
+    .side-panel {
+      border-radius: 14px;
+      padding: 14px 14px 16px;
+      background: radial-gradient(circle at top right, #111827, #020617 70%);
+      border: 1px solid rgba(55, 65, 81, 0.85);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .side-section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin-bottom: 2px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .pill {
+      font-size: 0.7rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .pill.red {
+      border-color: rgba(248, 113, 113, 0.9);
+      background: radial-gradient(circle at top left, rgba(127,29,29,0.95), rgba(185,28,28,0.7));
+    }
+
+    .side-desc {
+      font-size: 0.76rem;
+      color: #d1d5db;
+      line-height: 1.45;
+    }
+
+    .side-desc span {
+      color: #f97373;
+      font-weight: 600;
+    }
+
+    .side-footer {
+      margin-top: auto;
+      font-size: 0.7rem;
+      color: #6b7280;
+      border-top: 1px solid rgba(55, 65, 81, 0.8);
+      padding-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-left">
+        <div class="logo-circle">
+          AP
+        </div>
+        <div class="title-block">
+          <h1>Check-list Taller AP Motos</h1>
+          <p>Registro estandarizado de servicio por unidad · Uso interno taller</p>
+        </div>
+      </div>
+      <div class="badge">Service / Entrega controlada</div>
+    </div>
+
+    <!-- PANEL PRINCIPAL: FORM -->
+    <div class="main-panel">
+      <form action="https://formsubmit.co/lucas.berthi@gmail.com" method="POST">
+        <!-- CONFIG FormSubmit -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Nuevo check-list Taller AP Motos">
+        <input type="hidden" name="_template" value="table">
+        <!-- Campo para evitar el error "Unable to submit form" cuando abrís el HTML local -->
+        <input type="hidden" name="_url" value="https://apmotos-checklist.com/checklist.html">
+
+        <!-- DATOS GENERALES -->
+        <div class="section-header">
+          <h2>Datos de la unidad</h2>
+          <span>Campos marcados con * son obligatorios</span>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="mecanico" class="required">Mecánico</label>
+            <select id="mecanico" name="Mecánico" required>
+              <option value="">Seleccionar...</option>
+              <option value="Kevin">Kevin</option>
+              <option value="Daniel">Daniel</option>
+              <option value="Manu">Manu</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="tipo_servicio" class="required">Tipo de servicio</label>
+            <select id="tipo_servicio" name="Tipo de servicio" required>
+              <option value="">Seleccionar...</option>
+              <option value="1ER SERVICE">1ER SERVICE</option>
+              <option value="SERVICE">SERVICE</option>
+              <option value="REPARACION">REPARACION</option>
+              <option value="GARANTIA">GARANTIA</option>
+              <option value="REVISION">REVISION</option>
+              <option value="ACTIVACION 0km">ACTIVACION 0km</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="modelo" class="required">Modelo</label>
+            <input
+              type="text"
+              id="modelo"
+              name="Modelo"
+              placeholder="SRV 300, SRT 700X, SRK 400, etc."
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="chasis" class="required">Chasis</label>
+            <input
+              type="text"
+              id="chasis"
+              name="Chasis"
+              placeholder="00125"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="km">Kilometraje</label>
+            <input
+              type="number"
+              id="km"
+              name="Kilometraje"
+              placeholder="Ej: 4800"
+              min="0"
+            />
+          </div>
+
+          <div class="field">
+            <label for="fecha_ingreso">Fecha de ingreso</label>
+            <input
+              type="text"
+              id="fecha_ingreso"
+              name="Fecha de ingreso"
+              placeholder="Se completa automáticamente"
+            />
+          </div>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="checkbox-group">
+          <div class="group-title">
+            <div>Check-list de trabajo</div>
+            <span>Marcar solo lo efectivamente realizado</span>
+          </div>
+
+          <div class="checklist-column">
+            <!-- Columna 1 -->
+            <label class="check-item">
+              <input type="checkbox" name="Cambio de aceite" value="OK" />
+              <span>Cambio de aceite motor</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="Filtro de aceite" value="OK" />
+              <span>Cambio de filtro de aceite</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="Filtro de aire" value="OK" />
+              <span>Revisión / limpieza filtro de aire</span>
+            </label>
+
+             <label class="check-item">
+              <input type="checkbox" name="Cambio Filtro de aire" value="OK" />
+              <span>Cambio Filtro de aire</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="Sistema de frenos" value="OK" />
+              <span>Pastillas, discos, líquido y purga de frenos</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="Neumáticos" value="OK" />
+              <span>Presión, desgaste y estado general de neumáticos</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="Transmisión" value="OK" />
+              <span>Cadena/corona/piñón: desgaste, lubricación y tensión</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="Suspensión" value="OK" />
+              <span>Revisión básica de suspensión delantera y trasera</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="Línea de combustible" value="OK" />
+              <span>Mangueras, pérdidas, estado general</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="Sistema eléctrico" value="OK" />
+              <span>Luces, guiños, freno, bocina, tablero</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="Batería y carga" value="OK" />
+              <span>Estado batería y sistema de carga</span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="Reajuste gral de tornilleria" value="OK" />
+              <span>Verificación general de tornillería crítica</span>
+            </label>
+
+             <label class="check-item">
+              <input type="checkbox" name="Lavado" value="OK" />
+              <span>Lavado / limpieza Gral </span>
+            </label>
+
+            <label class="check-item">
+              <input type="checkbox" name="Prueba en marcha" value="OK" />
+              <span>Prueba dinámica y ruidos anómalos</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- OBSERVACIONES / RECOMENDACIONES -->
+        <div class="obs-block">
+          <h3>Observaciones del mecánico</h3>
+          <p>Detalles relevantes, síntomas, piezas a recomendar en próximo service, etc.</p>
+          <textarea name="Observaciones" placeholder="Ejemplo: Se detecta leve ruido en transmisión secundaria a baja velocidad. Recomendar revisión en próximo service."></textarea>
+        </div>
+
+        
+        <div class="obs-block">
+          <h3>Confirmación</h3>
+          <p>Nombre y firma del mecánico responsable de este servicio.</p>
+          <div class="field-grid">
+            <div class="field">
+              <label for="firma_mecanico" class="required">Firma mecánico (nombre completo)</label>
+              <input
+                type="text"
+                id="firma_mecanico"
+                name="Firma mecánico"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="estado_unidad">Estado general de la unidad</label>
+              <select id="estado_unidad" name="Estado general">
+                <option value="">Seleccionar...</option>
+                <option value="OK para entrega">OK para entrega</option>
+                <option value="OK con observaciones">OK con observaciones</option>
+                <option value="No apta, requiere trabajo extra">No apta, requiere trabajo extra</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Campo oculto para fecha/hora exacta -->
+        <input type="hidden" id="fecha_hora_envio" name="Fecha y hora de envío" />
+
+        <div class="submit-row">
+          <button type="submit">
+            Enviar check-list
+            <span>➜</span>
+          </button>
+          <div class="submit-note">
+            Se enviará un registro completo a <strong>administración</strong> y quedará vinculado a la patente y modelo indicados.
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- PANEL LATERAL -->
+    <div class="side-panel">
+      <div>
+        <div class="side-section-title">Modo de uso interno</div>
+        <div class="pill-row">
+          <div class="pill red">1 formulario = 1 moto</div>
+          <div class="pill">Completar antes de la entrega</div>
+          <div class="pill">Datos claros y concretos</div>
+        </div>
+        <p class="side-desc">
+          Este check-list está pensado para que cualquier mecánico de AP Motos pueda dejar
+          un registro rápido y ordenado del trabajo realizado. Lo que <span>no</span> se marque como OK,
+          se entiende como <span>no realizado</span> en ese servicio.
+        </p>
+      </div>
+
+      <div>
+        <div class="side-section-title">Tips de estandarización</div>
+        <div class="pill-row">
+          <div class="pill">Usar siempre mismos textos</div>
+          <div class="pill">Ser concreto en observaciones</div>
+          <div class="pill">Documentar problemas recurrentes</div>
+        </div>
+        <p class="side-desc">
+          En observaciones, describir síntomas y no solo piezas cambiadas. Eso te da histórico:
+          mismas fallas, mismos modelos, mismo kilometraje.
+        </p>
+      </div>
+
+      <div class="side-footer">
+        Versión 1.0 · AP Motos · Check-list digital taller<br />
+        Ajustá ítems según la realidad del taller y el tipo de servicio que más hagan.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Completa fecha de ingreso si está vacío y fecha/hora exacta de envío
+    (function() {
+      const ahora = new Date();
+      const fechaLocal = ahora.toLocaleDateString();
+      const fechaHoraLocal = ahora.toLocaleString();
+
+      const fechaIngresoInput = document.getElementById('fecha_ingreso');
+      const fechaEnvioHidden = document.getElementById('fecha_hora_envio');
+
+      if (fechaIngresoInput && !fechaIngresoInput.value) {
+        fechaIngresoInput.value = fechaLocal;
+      }
+      if (fechaEnvioHidden) {
+        fechaEnvioHidden.value = fechaHoraLocal;
+      }
+    })();
+  </script>
+</body>
+</html>
