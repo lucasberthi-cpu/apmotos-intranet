@@ -374,11 +374,11 @@
           AP
         </div>
         <div class="title-block">
-          <h1>Post venta AP </h1>
+          <h1>Post venta</h1>
           <p>Uso interno taller</p>
         </div>
       </div>
-      <div class="badge">Check post venta</div>
+      <div class="badge">Check AP</div>
     </div>
 
     <!-- PANEL PRINCIPAL: FORM -->
@@ -393,7 +393,7 @@
 
         <!-- DATOS GENERALES -->
         <div class="section-header">
-          <h2>Datos de la unidad</h2>
+          <h2>Datos del servicio</h2>
           <span>Campos marcados con * son obligatorios</span>
         </div>
 
@@ -404,7 +404,7 @@
               <option value="">Seleccionar...</option>
               <option value="Kevin">Kevin</option>
               <option value="Daniel">Daniel</option>
-              <option value="Manu">Manu</option>
+              <option value="Manuel">Manuel</option>
               <option value="Otro">Otro</option>
             </select>
           </div>
@@ -428,7 +428,7 @@
               type="text"
               id="modelo"
               name="Modelo"
-              placeholder="SRV 300, SRT 700X, SRK 400, etc."
+              placeholder="SKUA 150, SRT 700X, SMASH 110, etc."
               required
             />
           </div>
@@ -445,13 +445,13 @@
           </div>
 
           <div class="field">
-            <label for="km">Kilometraje</label>
+            <label for="km"class="required">Kilometraje</label>
             <input
               type="number"
               id="km"
               name="Kilometraje"
               placeholder="Ej: 4800"
-              min="0"
+              required
             />
           </div>
 
@@ -551,7 +551,7 @@
         <div class="obs-block">
           <h3>Observaciones del mecánico</h3>
           <p>Detalles relevantes, síntomas, piezas a recomendar en próximo service, etc.</p>
-          <textarea name="Observaciones" placeholder="Ejemplo: Se detecta leve ruido en transmisión secundaria a baja velocidad. Recomendar revisión en próximo service."></textarea>
+          <textarea name="Observaciones" placeholder="Ejemplo: Se reeplazo lampara delantera, se recomienda cambio transmision."></textarea>
         </div>
 
         
